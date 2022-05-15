@@ -8,7 +8,7 @@ import React, { useState, useEffect } from "react";
 import { Routes } from "react-router-dom";
 
 export default function App() {
-  const [employees, setEmployees] = useState([]);
+  const [bugs, setBugs] = useState([]);
 
   // const [teams, setTeams] = useState([
   //   { TeamName: "Executive", Employees: 5, Budget: 50000, Actual: 40000 },
@@ -21,21 +21,22 @@ export default function App() {
     fetch("http://localhost:3000/")
       .then((response) => response.json())
       .then((data) => {
-        setEmployees(data);
+        setBugs(data);
       })
       .catch((err) => console.log(err));
   }, []);
 
   return (
-    <Routes>
-      {/* WE WILL BE ADDING OUR ROUTES HERE */}
+    <div>{bugs}</div>
+    // <Routes>
+    //   {/* WE WILL BE ADDING OUR ROUTES HERE */}
       
-      {/* <Route exact path='/' render={() => <Dashboard teams={teams} employees={employees} />} />
-      <Route exact path='/Teams' render={() => <Teams employees={employees} teams={teams} />} />
-      <Route exact path='/Employees' render={() => <Employees employees={employees} />} />
-      <Route exact path='/NewEmployee' render={() => <NewEmployee />} />
-      <Route exact path='/EditEmployee' render={() => <EditEmployee />} />
-      <Route render={() => <NotFound />} /> */}
-    </Routes>
+    //   {/* <Route exact path='/' render={() => <Dashboard teams={teams} employees={employees} />} />
+    //   <Route exact path='/Teams' render={() => <Teams employees={employees} teams={teams} />} />
+    //   <Route exact path='/Employees' render={() => <Employees employees={employees} />} />
+    //   <Route exact path='/NewEmployee' render={() => <NewEmployee />} />
+    //   <Route exact path='/EditEmployee' render={() => <EditEmployee />} />
+    //   <Route render={() => <NotFound />} /> */}
+    // </Routes>
   );
 }
