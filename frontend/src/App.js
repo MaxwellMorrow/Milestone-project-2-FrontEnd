@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 // import NewEmployee from "./layouts/NewEmployee";
 // import EditEmployee from "./layouts/EditEmployee";
 // import NotFound from "./layouts/NotFound";
-import { Route, Switch } from "react-router-dom";
+import { Routes } from "react-router-dom";
 
 export default function App() {
   const [employees, setEmployees] = useState([]);
@@ -27,13 +27,15 @@ export default function App() {
   }, []);
 
   return (
-    <Switch>
-      <Route exact path='/' render={() => <Dashboard teams={teams} employees={employees} />} />
+    <Routes>
+      {/* WE WILL BE ADDING OUR ROUTES HERE */}
+      
+      {/* <Route exact path='/' render={() => <Dashboard teams={teams} employees={employees} />} />
       <Route exact path='/Teams' render={() => <Teams employees={employees} teams={teams} />} />
       <Route exact path='/Employees' render={() => <Employees employees={employees} />} />
       <Route exact path='/NewEmployee' render={() => <NewEmployee />} />
       <Route exact path='/EditEmployee' render={() => <EditEmployee />} />
-      <Route render={() => <NotFound />} />
-    </Switch>
+      <Route render={() => <NotFound />} /> */}
+    </Routes>
   );
 }
