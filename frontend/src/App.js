@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from "react";
-// import Dashboard from "./layouts/Dashboard";
-// import Teams from "./layouts/Teams";
-// import Employees from "./layouts/Employees";
-// import NewEmployee from "./layouts/NewEmployee";
-// import EditEmployee from "./layouts/EditEmployee";
-// import NotFound from "./layouts/NotFound";
 import { Routes } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import DashBoard from "./components/DashBoard";
+import CreateBugs from "./components/CreateBugs";
+import ViewBugs from "./components/ViewBugs";
+
 
 export default function App() {
   const [bugs, setBugs] = useState([]);
-
-  // const [teams, setTeams] = useState([
-  //   { TeamName: "Executive", Employees: 5, Budget: 50000, Actual: 40000 },
-  //   { TeamName: "Marketing", Employees: 5, Budget: 50000, Actual: 40000 },
-  //   { TeamName: "Technology", Employees: 5, Budget: 100000, Actual: 40000 },
-  //   { TeamName: "Accounting", Employees: 5, Budget: 50000, Actual: 40000 },
-  // ]);
 
   useEffect(() => {
     fetch("http://localhost:3000/")
@@ -27,10 +19,27 @@ export default function App() {
   }, []);
 
   return (
-    <div>{bugs}</div>
+
+    <div>{bugs}
+
+
+      <NavBar />
+      <DashBoard />
+      <CreateBugs />
+      <ViewBugs />
+
+
+
+
+
+
+
+
+
+    </div>
     // <Routes>
     //   {/* WE WILL BE ADDING OUR ROUTES HERE */}
-      
+
     //   {/* <Route exact path='/' render={() => <Dashboard teams={teams} employees={employees} />} />
     //   <Route exact path='/Teams' render={() => <Teams employees={employees} teams={teams} />} />
     //   <Route exact path='/Employees' render={() => <Employees employees={employees} />} />
