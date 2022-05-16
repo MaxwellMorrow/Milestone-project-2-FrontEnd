@@ -5,37 +5,17 @@ import DashBoard from "./components/DashBoard";
 import CreateBugs from "./components/CreateBugs";
 import ViewBugs from "./components/ViewBugs";
 
-
 export default function App() {
-  const [bugs, setBugs] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/")
-      .then((response) => response.json())
-      .then((data) => {
-        setBugs(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  
 
   return (
-
-    <div>{bugs}
+    <div>
 
 
       <NavBar />
       <DashBoard />
       <CreateBugs />
       <ViewBugs />
-
-
-
-
-
-
-
-
-
     </div>
     // <Routes>
     //   {/* WE WILL BE ADDING OUR ROUTES HERE */}
