@@ -11,7 +11,10 @@ export default function EditBug() {
   const [bugName, setbugName] = useState("");
   const [bugPriority, setbugPriority] = useState("");
   const [bugDetails, setbugDetails] = useState("");
+  const [userAssigned, setuserAssigned] = useState("");
+  const [Users, setUsers] = useState("");
 
+  // fetch for the bug that was clicked
   useEffect(() => {
     fetch(`http://localhost:3000/bugs/${bugId}`)
       .then((res) => res.json())
@@ -24,6 +27,16 @@ export default function EditBug() {
       });
   }, []);
 
+  // fetch for users
+  useEffect(() => {
+    fetch(`http://localhost:3000/users`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setUsers(data);
+      });
+  }, []);
+
   let handleSubmit = (e) => {
     e.preventDefault();
     fetch("http://localhost:3000/bugs/" + bugId, {
@@ -33,17 +46,20 @@ export default function EditBug() {
         name: bugName,
         priority: bugPriority,
         details: bugDetails,
+        user: userAssigned,
       }),
     });
   };
 
   //   this prevents our component from trying to render the below before the data comes in
-  if (FoundBug === null) {
-    return <p>Loading Bug!</p>;
+  if (FoundBug === null || Users === null) {
+    return <p>Loading Stuff!</p>;
   }
 
+  console.log(FoundBug.user)
+
   return (
-    <div>
+    <div id="editbug">
       <h1>Edit Bug</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
@@ -57,11 +73,15 @@ export default function EditBug() {
 
         <Form.Group className="mb-3">
           <Form.Label>Priority</Form.Label>
-          <Form.Control
-            type="text"
-            defaultValue={bugPriority}
+          <Form.Select
+            aria-label="Default select example"
             onChange={(e) => setbugPriority(e.target.value)}
-          />
+          >
+            <option>{bugPriority}</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </Form.Select>
         </Form.Group>
 
         <Form.Group className="mb-3">
@@ -72,6 +92,20 @@ export default function EditBug() {
             defaultValue={bugDetails}
             onChange={(e) => setbugDetails(e.target.value)}
           />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>User Assigned</Form.Label>
+          <Form.Select
+            aria-label="Default select example"
+            onChange={(e) => setuserAssigned(e.target.value)}
+
+          >
+          {Users.map((user)=>{
+            return (
+              <option value={user._id} key={user._id}>{user.name}</option>
+            )
+          })}
+          </Form.Select>
         </Form.Group>
 
         <Button variant="primary" type="submit">

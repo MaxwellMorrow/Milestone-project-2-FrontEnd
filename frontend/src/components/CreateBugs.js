@@ -29,12 +29,13 @@ export default function CreateBugs() {
   };
 
   return (
-    <div>
+    <div id="formcontainer">
       <form onSubmit={handleSubmit}>
 
         <div>
-          <label>Name</label>
+          <label>Name:</label>
           <input
+          id="name"
             type="text"
             name="name"
             placeholder="Name"
@@ -42,8 +43,9 @@ export default function CreateBugs() {
           />
         </div>
         <div>
-          <label>Priority</label>
+          <label>Priority:</label>
           <input
+          id="priority"
             type="text"
             name="priority"
             placeholder="Priority"
@@ -51,15 +53,16 @@ export default function CreateBugs() {
           />
         </div>
         <div>
-          <label>Details</label>
+          <label>Details:</label>
           <input
+          id="details"
             type="text"
             name="details"
             placeholder="Details"
             onChange={(e) => setDetails(e.target.value)}
           />
         </div>
-        <input type="submit" value="Add Ticket"></input>
+        <input id="addticket" type="submit" value="Add Ticket"></input>
       </form>
     </div>
   );

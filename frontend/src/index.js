@@ -22,13 +22,14 @@ import ViewBugs from './components/ViewBugs';
 import DashBoard from './components/DashBoard';
 import EditBug from './components/EditBug';
 import ErrorPage from './components/ErrorPage';
+import "./App.css"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>  
     <NavBar/>
     <Routes>
-      <Route path='/' element={<App/>}/>
+      <Route path='/' element={<DashBoard/>}/>
       <Route path='/dashboard' element={<DashBoard/>}/>
       <Route path='/bugs' element={<ViewBugs/>}/>
       <Route path='/createbug' element={<CreateBugs/>}/>
