@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect,useState } from 'react';
 import Table from "react-bootstrap/Table";
+import { useNavigate } from 'react-router-dom';
 
 export default function ViewBugs() {
 
@@ -19,6 +20,16 @@ export default function ViewBugs() {
     fetchBugs();
     }, []);
 
+  const deleteBug = async (id) => {
+    await fetch(`http://localhost:3000/bugs/delete/${id}`, {
+      method: "DELETE",
+    });
+  };
+
+
+    let navigate = useNavigate();
+  
+
     return (
         <div>VewBugs
            <Table>
@@ -32,12 +43,26 @@ export default function ViewBugs() {
             </thead>
             <tbody>
                 {bugs.map((bug,index)=>{
-                    return (<tr>
-                            <td>{index}</td>
-                            <td>{bug.name}</td>
-                            <td>{bug.priority}</td>
-                            <td>{bug.details}</td>
-                    </tr>)
+
+                    return (
+                      <tr key={bug._id}>
+                        <td>{index}</td>
+                        <td>{bug.name}</td>
+                        <td>{bug.priority}</td>
+                        <td>{bug.details}</td>
+                        <td>
+                          <button onClick={() => navigate(`/bugs/${bug._id}`)}>
+                            Edit
+                          </button>
+                        </td>
+                        <td>
+                          <button onClick={() => {
+                            deleteBug(bug._id); window.location.reload(true);}} >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    );
                 })}
             </tbody>
            </Table>

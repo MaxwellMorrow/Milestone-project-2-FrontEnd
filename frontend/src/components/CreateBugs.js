@@ -11,11 +11,10 @@ export default function CreateBugs() {
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await fetch("http://localhost:3000/ticket/", {
+      let res = await fetch("http://localhost:3000/bugs/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          id: id,
           name: name,
           priority: priority,
           details: details,
@@ -32,15 +31,7 @@ export default function CreateBugs() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Id</label>
-          <input
-            type="number"
-            name="id"
-            placeholder="Id"
-            onChange={(e) => setId(e.target.value)}
-          />
-        </div>
+
         <div>
           <label>Name</label>
           <input
